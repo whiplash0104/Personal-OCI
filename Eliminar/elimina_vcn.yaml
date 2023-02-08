@@ -17,11 +17,11 @@
       vcns_id: "{{ vcn_resultado.vcns[0].id }}"
 
   - set_fact:
-          dr_id: "{{ vcn_resultado.vcns[0].default_route_table_id }}"
+      dr_id: "{{ vcn_resultado.vcns[0].default_route_table_id }}"
 
   - name: Update default route table to drop reference to internet gateway
     oracle.oci.oci_network_route_table:
-      id: "{{ rt_id }}"
+      id: "{{ dr_id }}"
       route_rules: []
 #
 #  - name: Lista Route Table
