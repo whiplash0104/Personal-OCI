@@ -16,11 +16,13 @@
   - set_fact:
       sb_id: "{{ sb_resultado.subnets[0].id }}"
 
-  - name: Lista AD
-    shell: "/usr/bin/oci iam availability-domain list | grep name | awk -F': ' '{print $2}' | head -1"
-    become_user: true
-    shell: /bin/bash
-    register: oci_resultado
+  - name: List availability_domains
+    oracle.oci.oci_identity_availability_domain_facts:
+      compartment_id: "{{ compartment_ocid }}"
+    register: ad_resultado
+
+  - debug:
+    msg: "{{ ad_resultado }}"
 
   - name: Crea Instancia de Contenedor
     oracle.oci.oci_container_instances_container_instance:
