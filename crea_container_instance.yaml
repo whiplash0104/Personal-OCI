@@ -22,7 +22,7 @@
     register: ad_resultado
 
   - debug:
-    msg: "{{ ad_resultado }}"
+      msg: "{{ ad_resultado }}"
 
   - name: Crea Instancia de Contenedor
     oracle.oci.oci_container_instances_container_instance:
