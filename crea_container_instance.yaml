@@ -9,12 +9,12 @@
   tasks:
   - name: Lista Subnet
     oracle.oci.oci_network_subnet_facts:
-     compartment_id: "{{ compartment_ocid }}"
-     display_name: "CI-subnet"
-    register: vcn_resultado
+      compartment_id: "{{ compartment_ocid }}"
+      display_name: "CI-subnet"
+    register: sb_resultado
 
   - set_fact:
-      vcn_id: "{{ vcn_resultado.vcns[0].id }}"
+      sb_id: "{{ sb_resultado.subnets[0].id }}"
 
   - name: Crea Instancia de Contenedor
     oracle.oci.oci_container_instances_container_instance:
@@ -27,5 +27,5 @@
       - image_url: "docker.io/nginx:latest"
         display_name: "container-test"
       vnics:
-      - subnet_id: "{{ vcn_id }}"
+      - subnet_id: "{{ sb_id }}"
 
