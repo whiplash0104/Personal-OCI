@@ -18,6 +18,8 @@
 
   - name: Lista AD
     shell: "oci iam availability-domain list | grep name | awk -F': ' '{print $2}' | head -1"
+    sudo: true
+    sudo_user: root
     register: oci_resultado
 
   - name: Crea Instancia de Contenedor
