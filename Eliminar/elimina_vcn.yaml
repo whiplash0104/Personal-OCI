@@ -22,11 +22,11 @@
        vcn_id: "{{ vcns_id }}"
     register: rt_resultado
 
-#  - set_fact:
-#      autonomous_database_id: "{{ resultado.autonomous_databases[0].id }}"
+  - set_fact:
+      rt_id: "{{ rt_resultado.route_tables[0].id }}"
 
-#  - name: Elimina ADB
-#    oracle.oci.oci_database_autonomous_database:
-#       autonomous_database_id: "{{ autonomous_database_id }}"
-#       state: 'absent'
-#    register: result
+  - name: Elimina Route Table
+    oracle.oci.oci_network_route_table:
+       rt_id: "{{ rt_id }}"
+       state: 'absent'
+    register: resultado
