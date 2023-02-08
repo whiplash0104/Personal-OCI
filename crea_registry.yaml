@@ -10,4 +10,4 @@
   - name: Crea Registry
     oracle.oci.oci_data_connectivity_registry:
       compartment_id: "{{ compartment_ocid }}"
-      display_name: "ci-registry"
+      display_name: "ciregistry"
