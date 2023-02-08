@@ -22,7 +22,7 @@
     oracle.oci.oci_network_internet_gateway:
       compartment_id: "{{ compartment_ocid }}"
       vcn_id: "{{ vcn_id }}"
-      name: "InternetGateway-OKE-VCN"
+      name: "InternetGateway-CI-VCN"
       is_enabled: true
     register: ig_resultado
 
@@ -49,6 +49,6 @@
     register: sb_resultado
 
   - set_fact:
-      subnet_id: "{{ sb_resultado.results.subnet.id }}"
+      subnet_id: "{{ sb_resultado.subnet.id }}"
 
 
