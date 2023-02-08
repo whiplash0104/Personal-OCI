@@ -21,15 +21,14 @@
       compartment_id: "{{ compartment_ocid }}"
     register: ad_resultado
 
-  - debug:
-      msg: "{{ ad_resultado.availability_domains[0].name }}"
+  - set_fact:
+      ad_name: "{{ ad_resultado.availability_domains[0].name }}"
 
   - name: Crea Instancia de Contenedor
     oracle.oci.oci_container_instances_container_instance:
       compartment_id: "{{ compartment_ocid }}"
       display_name: "GP-Instance"
-#      availability_domain: "{{ oci_resultado }}"
-      availability_domain: "lkFW:SA-SANTIAGO-1-AD-1"
+      availability_domain: "{{ ad_name }}"
       shape: "CI.Standard.E4.Flex"
       shape_config: 
         ocpus: "1"
