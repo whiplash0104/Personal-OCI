@@ -1,0 +1,32 @@
+---
+- name: Elimina VCN
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  
+  vars_files: ../vault.yaml
+
+  tasks:
+  - name: Lista VCN
+    oracle.oci.oci_network_vcn_facts:
+      compartment_id: "{{ compartment_ocid }}"
+      display_name: "CI-VCN"
+    register: vcn_resultado
+
+  - set_fact:
+      vcns_id: "{{ vcn_resultado.vcns[0].id }}"
+
+  - name: Lista Route Table
+    oracle.oci.oci_network_route_table_facts:
+       compartment_id: "{{ compartment_ocid }}"
+       vcn_id: "{{ vcns_id }}"
+    register: rt_resultado
+
+#  - set_fact:
+#      autonomous_database_id: "{{ resultado.autonomous_databases[0].id }}"
+
+#  - name: Elimina ADB
+#    oracle.oci.oci_database_autonomous_database:
+#       autonomous_database_id: "{{ autonomous_database_id }}"
+#       state: 'absent'
+#    register: result
