@@ -11,9 +11,9 @@
     oracle.oci.oci_database_autonomous_database:
         compartment_id: "{{ compartment_ocid }}"
         cpu_core_count: "1"
-        display_name: "ansibleadb"
+        display_name: "container-instance-adb"
         admin_password: "{{ admin_password }}"
-        db_name: "ansibleadb"
+        db_name: "ciadb"
         data_storage_size_in_tbs: "1"
         #is_free_tier: true
         state: 'present'
