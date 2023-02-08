@@ -19,6 +19,7 @@
   - name: Crea Instancia de Contenedor
     oracle.oci.oci_container_instances_container_instance:
       compartment_id: "{{ compartment_ocid }}"
+      availability_domain: "lkFW:SA-SANTIAGO-1-AD-1"
       shape: "CI.Standard.E4.Flex"
       shape_config: 
         ocpus: "1"
