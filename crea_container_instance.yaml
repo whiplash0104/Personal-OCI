@@ -19,6 +19,7 @@
   - name: Lista AD
     shell: "/usr/bin/oci iam availability-domain list | grep name | awk -F': ' '{print $2}' | head -1"
     become_user: true
+    shell: /bin/bash
     register: oci_resultado
 
   - name: Crea Instancia de Contenedor
