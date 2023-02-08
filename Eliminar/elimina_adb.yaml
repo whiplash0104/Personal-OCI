@@ -1,5 +1,5 @@
 ---
-- name: Crea Instancia Autonomous Database Allways Free
+- name: Elimina Instancia Autonomous Database Allways Free
   hosts: localhost
   connection: local
   gather_facts: false
