@@ -7,10 +7,10 @@
   vars_files: vault.yaml
 
   tasks:
-  - name: Lista VCN
-    oracle.oci.oci_network_vcn_facts:
+  - name: Lista Subnet
+    oracle.oci.oci_network_subnet_facts:
      compartment_id: "{{ compartment_ocid }}"
-     display_name: "CI-VCN"
+     display_name: "CI-subnet"
     register: vcn_resultado
 
   - set_fact:
