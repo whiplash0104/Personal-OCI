@@ -62,4 +62,3 @@
               min: "80"
               max: "80"
       purge_security_rules: 'no'
-#    register: sl_resultado

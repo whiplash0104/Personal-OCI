@@ -1,0 +1,31 @@
+---
+- name: Crea y Configura VCN
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  vars_files: vault.yaml
+
+  tasks:
+  - name: Lista VCN
+    oracle.oci.oci_network_vcn_facts:
+     compartment_id: "{{ compartment_ocid }}"
+     display_name: "CI-VCN"
+    register: vcn_resultado
+
+  - set_fact:
+      vcn_id: "{{ vcn_resultado.vcns[0].id }}"
+
+  - name: Crea Instancia de Contenedor
+    oracle.oci.oci_container_instances_container_instance:
+      compartment_id: "{{ compartment_ocid }}"
+      shape: "CI.Standard.E4.Flex"
+      shape_config: 
+        ocpus: "1"
+        memory_in_gbs: "1"
+      containers:
+      - image_url: "docker.io/library/nginx:latest"
+        display_name: "container-test"
+      vnics:
+      - subnet_id: "{{ vcn_id }}"
+
