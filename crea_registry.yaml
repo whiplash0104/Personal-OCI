@@ -12,4 +12,3 @@
       compartment_id: "{{ compartment_ocid }}"
       display_name: "ciregistry"
       is_public: true
-      is_immutable: true
