@@ -53,7 +53,7 @@
 
   - name: Agrega Reglas de Ingress en Subnet Publida
     oracle.oci.oci_network_security_list:
-      id: "{{ subnet_id }}"
+      id: "{{ vcn_resultado.vcn.default_security_list_id }}"
       ingress_security_rules:
         - source: "0.0.0.0/0"
           protocol: "6"
