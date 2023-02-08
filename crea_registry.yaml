@@ -8,6 +8,8 @@
 
   tasks:
   - name: Crea Registry
-    oracle.oci.oci_data_connectivity_registry:
+    oracle.oci.oci_artifacts_container_repository:
       compartment_id: "{{ compartment_ocid }}"
       display_name: "ciregistry"
+      is_public: true
+      is_immutable: true
