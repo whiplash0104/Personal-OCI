@@ -14,7 +14,7 @@
     register: resultado
 
   - set_fact:
-    autonomous_database_id: "{{ resultado.autonomous_databases[0].id }}"
+      autonomous_database_id: "{{ resultado.autonomous_databases[0].id }}"
 
   - name: Elimina ADB
     oracle.oci.oci_database_autonomous_database:
