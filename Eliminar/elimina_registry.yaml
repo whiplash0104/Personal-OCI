@@ -7,8 +7,8 @@
   vars_files: ../vault.yaml
 
   tasks:
-  - name: List container_repositories
-    oci_artifacts_container_repository_facts:
+  - name: Lista Registrys
+    oracle.oci.oci_artifacts_container_repository_facts:
       compartment_id: "{{ compartment_ocid }}"
     register: r_resultado
 
