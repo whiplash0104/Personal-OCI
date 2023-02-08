@@ -24,8 +24,8 @@
         ocpus: "1"
         memory_in_gbs: "1"
       containers:
-      - image_url: "docker.io/nginx:latest"
-        display_name: "container-test"
+      - image_url: "docker.io/library/nginx:latest"
+        display_name: "containertest"
       vnics:
       - subnet_id: "{{ sb_id }}"
 
