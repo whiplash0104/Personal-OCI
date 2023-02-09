@@ -13,3 +13,7 @@
     oracle.oci.oci_ons_notification_topic:
       name: "{{ topic_name }}"
       compartment_id: "{{ compartment_ocid}}"
+    register: tp_resultado
+
+  - set_fact:
+      tp_id: "{{ tp_resultado[0].topic_id }}"
