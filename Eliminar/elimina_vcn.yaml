@@ -4,13 +4,15 @@
   connection: local
   gather_facts: false
   
-  vars_files: ../vault.yaml
+  vars_files:
+    - ../vault.yaml
+    - ../variables.yaml
 
   tasks:
   - name: Lista VCN
     oracle.oci.oci_network_vcn_facts:
       compartment_id: "{{ compartment_ocid }}"
-      display_name: "CI-VCN"
+      display_name: "{{ vcn_name }}"
     register: vcn_resultado
 
   - set_fact:
@@ -23,6 +25,20 @@
     oracle.oci.oci_network_route_table:
       id: "{{ dr_id }}"
       route_rules: []
+
+  - name: Lista Subnet
+    oracle.oci.oci_network_subnet_facts:
+      compartment_id: "{{ compartment_ocid }}"
+      display_name: "{{ subnet_name }}"
+    register: sn_resultado
+
+  - set_fact:
+      sn_id: "{{ sn_resultado.subnets[0].id }}"
+
+  - name: Elimina Subnet
+    oracle.oci.oci_network_subnet:
+      subnet_id: "{{ sn_id }}"
+      state: absent
 
   - name: Elimina VCN
     oracle.oci.oci_network_vcn:

@@ -4,15 +4,17 @@
   connection: local
   gather_facts: false
 
-  vars_files: vault.yaml
+  vars_files: 
+    - vault.yaml
+    - variables.yaml
 
   tasks:
   - name: Crea VCN
     oracle.oci.oci_network_vcn:
       compartment_id: "{{ compartment_ocid }}"
-      display_name: "CI-VCN"
-      cidr_block: "10.0.0.0/16"
-      dns_label: "civcn"
+      display_name: "{{ vcn_name }}"
+      cidr_block: "{{ vcn_cidr }}"
+      dns_label: "{{ vcn_dns_label }}"
     register: vcn_resultado
 
   - set_fact:
@@ -22,7 +24,7 @@
     oracle.oci.oci_network_internet_gateway:
       compartment_id: "{{ compartment_ocid }}"
       vcn_id: "{{ vcn_id }}"
-      name: "InternetGateway-CI-VCN"
+      name: "{{ ig_name }}"
       is_enabled: true
     register: ig_resultado
 
@@ -44,8 +46,8 @@
     oracle.oci.oci_network_subnet:
       compartment_id: "{{ compartment_ocid }}"
       vcn_id: '{{ vcn_id }}'
-      cidr_block: "10.0.0.0/24"
-      display_name: "CI-subnet"
+      cidr_block: "{{ subnet_cidr }}"
+      display_name: "{{ subnet_name }}"
     register: sb_resultado
 
   - set_fact:

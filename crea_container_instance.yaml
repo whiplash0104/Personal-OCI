@@ -4,13 +4,15 @@
   connection: local
   gather_facts: false
 
-  vars_files: vault.yaml
+  vars_files:
+    - vault.yaml
+    - variables.yaml
 
   tasks:
   - name: Lista Subnet
     oracle.oci.oci_network_subnet_facts:
       compartment_id: "{{ compartment_ocid }}"
-      display_name: "CI-subnet"
+      display_name: "{{ subnet_name }}"
     register: sb_resultado
 
   - set_fact:
@@ -27,15 +29,15 @@
   - name: Crea Instancia de Contenedor
     oracle.oci.oci_container_instances_container_instance:
       compartment_id: "{{ compartment_ocid }}"
-      display_name: "GP-Instance"
+      display_name: "{{ ci_name }}"
       availability_domain: "{{ ad_name }}"
-      shape: "CI.Standard.E4.Flex"
+      shape: "{{ ci_shape }}"
       shape_config: 
-        ocpus: "1"
-        memory_in_gbs: "1"
+        ocpus: "{{ ci_ocpu }}"
+        memory_in_gbs: "{{ ci_ram }}"
       containers:
       - image_url: "nginx:latest"
-        display_name: "containertest"
+        display_name: "{{ ci_name }}"
       vnics:
       - subnet_id: "{{ sb_id }}"
 

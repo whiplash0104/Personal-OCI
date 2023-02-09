@@ -4,13 +4,15 @@
   connection: local
   gather_facts: false
   
-  vars_files: ../vault.yaml
+  vars_files:
+    - ../vault.yaml
+    - ../variables.yaml
 
   tasks:
   - name: Lista Container Isntances
     oracle.oci.oci_container_instances_container_instance_facts:
       compartment_id: "{{ compartment_ocid }}"
-      display_name: "GP-Instance"
+      display_name: "{{ ci_name }}"
     register: ci_resultado
 
   - set_fact:
