@@ -16,4 +16,4 @@
     register: tp_resultado
 
   - set_fact:
-      tp_id: "{{ tp_resultado[0].topic_id }}"
+      tp_id: "{{ tp_resultado.topic_id }}"
