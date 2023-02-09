@@ -10,6 +10,6 @@
 
   tasks:
   - name: Crea Topico de Notificacion
-  oci_ons_notification_topic:
-    name: "{{ topic_name }}"
-    compartment_id: "{{ compartment_ocid}}"
+    oracle.oci.oci_ons_notification_topic:
+      name: "{{ topic_name }}"
+      compartment_id: "{{ compartment_ocid}}"
