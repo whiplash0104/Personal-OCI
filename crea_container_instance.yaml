@@ -36,7 +36,8 @@
         ocpus: "{{ ci_ocpu }}"
         memory_in_gbs: "{{ ci_ram }}"
       containers:
-      - image_url: "nginx:latest"
+#      - image_url: "nginx:latest"
+      - image_url: "scl.ocir.io/axmdrz5zetbw/gp-registry:latest"
         display_name: "{{ co_name }}"
       vnics:
       - subnet_id: "{{ sb_id }}"
