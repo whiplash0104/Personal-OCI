@@ -16,7 +16,7 @@
     register: tp_resultado
 
   - set_fact:
-      tp_id: "{{ tp_resultado.topic_id }}"
+      tp_id: "{{ tp_resultado.notification_topic.topic_id }}"
 
   - name: Crea Proyecto
     oracle.oci.oci_devops_project:
