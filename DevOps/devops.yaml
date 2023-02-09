@@ -17,3 +17,11 @@
 
   - set_fact:
       tp_id: "{{ tp_resultado.topic_id }}"
+
+  - name: Crea Proyecto
+    oracle.oci.oci_devops_project:
+      name: "{{ project_name }}"
+      compartment_id: "{{ compartment_ocid}}"
+      notification_config: 
+        topic_id: "{{ tp_id }}"
+
