@@ -37,7 +37,7 @@
         memory_in_gbs: "{{ ci_ram }}"
       containers:
       - image_url: "nginx:latest"
-        display_name: "{{ ci_name }}"
+        display_name: "{{ co_name }}"
       vnics:
       - subnet_id: "{{ sb_id }}"
 

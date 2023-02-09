@@ -40,6 +40,20 @@
       subnet_id: "{{ sn_id }}"
       state: absent
 
+  - name: Lista Internet Gateway
+    oracle.oci.oci_network_internet_gateway_facts:
+      compartment_id: "{{ compartment_ocid }}"
+      display_name: "{{ ig_name }}"
+    register: ig_resultado
+
+  - set_fact: 
+      ig_id: "{{ ig_resultado.internet_gateways[0].id }}"
+
+  - name: Elimina Internet Gateway
+    oracle.oci.oci_network_internet_gateway:
+      ig_id: "{{ ig_id }}"
+      state: absent
+
   - name: Elimina VCN
     oracle.oci.oci_network_vcn:
       vcn_id: "{{ vcns_id }}"
